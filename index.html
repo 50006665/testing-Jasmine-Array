@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine.css"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/jasmine-html.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.4.1/boot.js"></script>
+
+    <script>
+            
+    var arr =[];
+
+    for (var i =0 ; i < 10; i++ ){
+
+        arr.push(i);
+    }
+    for (var j=0 ; j<5 ; j++){
+
+        arr.push(j);
+    }
+
+    var uniqueArray = arr.filter(function(elem, pos) {
+    return arr.indexOf(elem) == pos;
+    });
+
+
+describe('jasmine.arrayContaining', function(){
+    var pass = [];
+    var x = [];
+     it('Should contain the number 1 to 10',function(){
+
+      
+        for(var x = 0; x<10; x++){
+
+            pass.push(x);
+
+        }
+
+      expect(pass).toEqual(jasmine.arrayContaining([0,1,2,4,5,6,7,8,9]))
+     });
+
+     it('should contain the number 0 to 10 then 1 to 5', function(){
+
+        for (var s = 0 ; s<5; s++){
+
+            pass.push(s);
+        }
+        expect(pass).toEqual(jasmine.arrayContaining([0,1,2,4,5,6,7,8,9,0,1,2,3,4,5]))
+     });
+
+    it ('should contain a list with the duplicates 1 to 5', function(){
+
+        for (var z = 0 ; z<6; z++){ 
+
+            x.push(z);
+        }
+        expect(x).toEqual(jasmine.arrayContaining([0,1,2,3,4,5]))
+     }); 
+
+     it("check if duplicates is working", function(){
+        var uniqueArray = pass.filter(function(elem, pos) {
+    return pass.indexOf(elem) == pos;
+    });
+
+        expect(uniqueArray).toEqual(jasmine.arrayContaining([0,1,2,4,5]))
+     });
+});
+
+
+        </script>
+</body>
+</html>
